@@ -18,7 +18,6 @@ body {
   grid-template-rows: repeat(5, 9vmin) minmax(9vmin, auto);
   gap: 1vmin;
 }
-
 .display {
   font-size: 8vmin;
   grid-column: -1 / 1;
@@ -27,10 +26,28 @@ body {
   text-align: center;
   align-self: center;
 }
+.num {
+  background-color: grey;
+  border: medium solid grey;
+  color: black;
+}
+.fun {
+  background-color: orange;
+  border: medium solid orange;
+  color: black;
+}
+.ac,
+.negative,
+.percent {
+  border: medium solid yellow;
+  background-color: yellow;
+  color: black;
+}
 .zero {
   grid-column: 1 / 3;
 }
 button {
+  font-family: inherit;
   font-size: 5vmin;
   border-radius: 8vmin;
 }
