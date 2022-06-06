@@ -19,6 +19,17 @@ body {
   gap: 1vmin;
 }
 
+.display {
+  font-size: 8vmin;
+  grid-column: -1 / 1;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+}
+.zero {
+  grid-column: 1 / 3;
+}
 button {
   font-size: 5vmin;
   border-radius: 8vmin;
