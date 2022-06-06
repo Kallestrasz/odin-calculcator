@@ -1,11 +1,18 @@
+@font-face {
+  font-family: Digital;
+  src: url(fonts/digital-7-mono.ttf);
+}
+
 body {
   background-color: rgb(31, 41, 55);
   color: whitesmoke;
-  font-family: monospace, sans-serif;
+  font-family: Digital, monospace, sans-serif;
   margin: auto;
   overflow: hidden auto;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  align-self: center;
   display: flex;
 }
 
