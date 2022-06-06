@@ -1,0 +1,16 @@
+body {
+  background-color: rgb(31, 41, 55);
+  color: whitesmoke;
+  font-family: monospace, sans-serif;
+  margin: auto;
+  overflow: hidden auto;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+h1 {
+  font-family: monospace;
+  text-align: center;
+  font-size: 5vmin;
+}
