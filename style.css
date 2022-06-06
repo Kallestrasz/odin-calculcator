@@ -9,6 +9,20 @@ body {
   display: flex;
 }
 
+.container {
+  display: grid;
+  border: 2vmin solid black;
+  border-radius: 5vmin;
+  background-color: black;
+  grid-template-columns: repeat(4, 9vmin);
+  grid-template-rows: repeat(5, 9vmin) minmax(9vmin, auto);
+  gap: 1vmin;
+}
+
+button {
+  font-size: 5vmin;
+  border-radius: 8vmin;
+}
 h1 {
   font-family: monospace;
   text-align: center;
