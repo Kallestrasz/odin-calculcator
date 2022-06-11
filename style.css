@@ -17,6 +17,7 @@ body {
 }
 
 .container {
+  margin-top: 10vmin;
   display: grid;
   border: 2vmin solid black;
   border-radius: 5vmin;
