@@ -39,13 +39,14 @@ body {
   border: medium solid grey;
   color: black;
 }
-.fun {
+.fun,
+.equals {
   background-color: orange;
   border: medium solid orange;
   color: black;
 }
-.ac,
-.negative,
+.clear,
+.sign,
 .percent {
   border: medium solid yellow;
   background-color: yellow;

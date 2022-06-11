@@ -1,5 +1,9 @@
-const buttons = document.querySelectorAll("button");
+let displayValue = "0";
 let result = null;
+let firstNum = null;
+let secondNum = null;
+let operator = null;
+const buttons = document.querySelectorAll("button");
 
 function multiplication(a, b) {
   return a * b;
@@ -19,13 +23,67 @@ function subtraction(a, b) {
 }
 
 function percent(a, b) {
-  return a % b;
+  return (100 * a) / b;
 }
 
-function operate(a, operator, b) {
-  if (operator == "*") return multiplication(a, b);
-  else if (operator == "/") return division(a, b);
-  else if (operator == "+") return addition(a, b);
-  else if (operator == "-") return subtraction(a, b);
-  else return percent(a, b);
+function sign(n) {
+  return (n = n * -1);
 }
+
+function updateDisplay() {
+  const display = document.querySelector(".display");
+  display.innerText = displayValue;
+}
+
+function operate(a, fun, b) {
+  if (fun == "*") return multiplication(a, b);
+  else if (fun == "/") {
+    if (b === 0) {
+      return "Error";
+    } else {
+      return division(a, b);
+    }
+  } else if (fun == "+") return addition(a, b);
+  else if (fun == "-") return subtraction(a, b);
+  else if (fun == "%") return percent(a, b);
+  else alert("oh nyo");
+}
+
+function refresh() {
+  displayValue = "0";
+  result = null;
+  firstNum = null;
+  secondNum = null;
+  operator = null;
+  updateDisplay();
+}
+
+function clickButton() {
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function () {
+      if (buttons[i].classList.contains("num")) {
+        if (firstNum != null) secondNum = parseInt(buttons[i].innerText);
+        else firstNum = parseInt(buttons[i].innerText);
+        displayValue = buttons[i].innerText;
+        console.log(buttons[i].innerText);
+        updateDisplay();
+      } else if (buttons[i].classList.contains("fun")) {
+        operator = buttons[i].innerText;
+        updateDisplay();
+      } else if (buttons[i].classList.contains("equals")) {
+        displayValue = operate(firstNum, operator, secondNum);
+        console.log(operate(firstNum, operator, secondNum));
+        updateDisplay();
+      } else if (buttons[i].classList.contains("decimal")) {
+        updateDisplay();
+      } else if (buttons[i].classList.contains("percent")) {
+        updateDisplay();
+      } else if (buttons[i].classList.contains("sign")) {
+        updateDisplay();
+      } else if (buttons[i].classList.contains("clear")) {
+        refresh();
+      } else alert("oh nyo");
+    });
+  }
+}
+clickButton();
