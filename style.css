@@ -27,6 +27,7 @@ body {
   gap: 1vmin;
 }
 .display {
+  overflow: hidden;
   font-size: 8vmin;
   grid-column: -1 / 1;
   display: flex;

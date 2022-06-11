@@ -1,16 +1,18 @@
 let displayValue = "0";
-let result = null;
+let operationEnd = 0;
 let firstNum = null;
 let secondNum = null;
 let operator = null;
-const buttons = document.querySelectorAll("button");
 
 function multiplication(a, b) {
   return a * b;
 }
 
 function division(a, b) {
-  if (b == 0) return a;
+  if (b == 0) {
+    refresh();
+    return a;
+  }
   return a / b;
 }
 
@@ -35,6 +37,16 @@ function updateDisplay() {
   display.innerText = displayValue;
 }
 
+function refresh() {
+  click = 0;
+  displayValue = "0";
+  result = null;
+  firstNum = null;
+  secondNum = null;
+  operator = null;
+  updateDisplay();
+}
+
 function operate(a, fun, b) {
   if (fun == "*") return multiplication(a, b);
   else if (fun == "/") {
@@ -49,33 +61,54 @@ function operate(a, fun, b) {
   else alert("oh nyo");
 }
 
-function refresh() {
-  displayValue = "0";
-  result = null;
-  firstNum = null;
-  secondNum = null;
-  operator = null;
-  updateDisplay();
-}
-
+const buttons = document.querySelectorAll("button");
+let click = 0;
+let currentNum = 1;
 function clickButton() {
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function () {
       if (buttons[i].classList.contains("num")) {
-        if (firstNum != null) secondNum = parseInt(buttons[i].innerText);
-        else firstNum = parseInt(buttons[i].innerText);
-        displayValue = buttons[i].innerText;
+        let output;
+        if (operationEnd == 1) {
+          refresh();
+          operationEnd = 0;
+        }
+        if (currentNum != 1) {
+          if (click == 0) {
+            output = secondNum = buttons[i].innerText;
+            click = 1;
+          } else output = secondNum += buttons[i].innerText;
+        } else {
+          if (click == 0) {
+            output = firstNum = buttons[i].innerText;
+            click = 1;
+          } else output = firstNum += buttons[i].innerText;
+        }
+        displayValue = output;
         updateDisplay();
       } else if (buttons[i].classList.contains("fun")) {
+        operationEnd = 0;
         operator = buttons[i].innerText;
+        currentNum = 2;
+        click = 0;
         updateDisplay();
       } else if (buttons[i].classList.contains("equals")) {
         if (firstNum != null && secondNum != null && operator != null) {
-          displayValue = operate(firstNum, operator, secondNum);
+          displayValue = operate(
+            parseFloat(firstNum),
+            operator,
+            parseFloat(secondNum)
+          );
+          click = 0;
           firstNum = displayValue;
+          operationEnd = 1;
+          currentNum = 1;
           updateDisplay();
         }
-      } else if (buttons[i].classList.contains("decimal")) {
+      } else if (buttons[i].classList.contains("dot")) {
+        if (currentNum == 1) {
+          firstNum += ".";
+        } else secondNum += ".";
         updateDisplay();
       } else if (buttons[i].classList.contains("sign")) {
         if (displayValue == firstNum) displayValue = firstNum = sign(firstNum);
@@ -87,4 +120,5 @@ function clickButton() {
     });
   }
 }
+
 clickButton();
