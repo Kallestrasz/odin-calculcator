@@ -27,7 +27,7 @@ function percent(a, b) {
 }
 
 function sign(n) {
-  return (n = n * -1);
+  return n * -1;
 }
 
 function updateDisplay() {
@@ -65,20 +65,21 @@ function clickButton() {
         if (firstNum != null) secondNum = parseInt(buttons[i].innerText);
         else firstNum = parseInt(buttons[i].innerText);
         displayValue = buttons[i].innerText;
-        console.log(buttons[i].innerText);
         updateDisplay();
       } else if (buttons[i].classList.contains("fun")) {
         operator = buttons[i].innerText;
         updateDisplay();
       } else if (buttons[i].classList.contains("equals")) {
-        displayValue = operate(firstNum, operator, secondNum);
-        console.log(operate(firstNum, operator, secondNum));
-        updateDisplay();
+        if (firstNum != null && secondNum != null && operator != null) {
+          displayValue = operate(firstNum, operator, secondNum);
+          firstNum = displayValue;
+          updateDisplay();
+        }
       } else if (buttons[i].classList.contains("decimal")) {
         updateDisplay();
-      } else if (buttons[i].classList.contains("percent")) {
-        updateDisplay();
       } else if (buttons[i].classList.contains("sign")) {
+        if (displayValue == firstNum) displayValue = firstNum = sign(firstNum);
+        else displayValue = secondNum = sign(secondNum);
         updateDisplay();
       } else if (buttons[i].classList.contains("clear")) {
         refresh();
