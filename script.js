@@ -1,9 +1,3 @@
-let displayValue = "0";
-let operationEnd = 0;
-let firstNum = null;
-let secondNum = null;
-let operator = null;
-
 function multiplication(a, b) {
   return a * b;
 }
@@ -61,9 +55,16 @@ function operate(a, fun, b) {
   else alert("oh nyo");
 }
 
+let displayValue = "0";
+let operationEnd = 0;
+let firstNum = null;
+let secondNum = null;
+let operator = null;
 const buttons = document.querySelectorAll("button");
 let click = 0;
 let currentNum = 1;
+let bong = new Audio();
+bong.src = "./sounds/bong.mp3";
 function clickButton() {
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function () {
@@ -93,6 +94,7 @@ function clickButton() {
         click = 0;
         updateDisplay();
       } else if (buttons[i].classList.contains("equals")) {
+        bong.play();
         if (firstNum != null && secondNum != null && operator != null) {
           displayValue = operate(
             parseFloat(firstNum),
